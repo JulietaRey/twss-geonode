@@ -21,7 +21,12 @@ x-common-django:
       condition: service_healthy
 
 services:
-
+  redis:
+    image: redis:alpine
+    container_name: redis4geonode
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
   # Our custom django application. It includes Geonode.
   django:
     << : *default-common-django

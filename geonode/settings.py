@@ -27,12 +27,11 @@ import dj_database_url
 from schema import Optional
 from datetime import timedelta
 from urllib.parse import urlparse, urljoin
-
+from .version import get_version
 #
 # General Django development settings
 #
 from django.conf.global_settings import DATETIME_INPUT_FORMATS
-from geonode import get_version
 from kombu import Queue, Exchange
 from kombu.serialization import register
 
@@ -469,6 +468,7 @@ INSTALLED_APPS = (
     "django.contrib.humanize",
     "django.contrib.gis",
     "sequences.apps.SequencesConfig",
+    "django_q",
     # Utility
     "dj_pagination",
     "taggit",
@@ -2329,8 +2329,19 @@ DEFAULT_ASSET_HANDLER = "geonode.assets.local.LocalAssetHandler"
 ASSET_HANDLERS = [
     DEFAULT_ASSET_HANDLER,
 ]
-INSTALLED_APPS += ("geonode.assets",)
-GEONODE_APPS += ("geonode.assets",)
+INSTALLED_APPS += ("geonode.assets",  "geonode.geonode_updater",)
+GEONODE_APPS += ("geonode.assets", )
+
+Q_CLUSTER = {
+    "name": "GeoNode",
+    "workers": 4,
+    "timeout": 60,
+    "retry": 90,
+    "queue_limit": 500,
+    "bulk": 10,
+    "orm": "default",
+}
+
 
 # Django-Avatar - Change default templates to Geonode based
 AVATAR_ADD_TEMPLATE = "people/avatar/add.html"
