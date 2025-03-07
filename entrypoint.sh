@@ -68,6 +68,9 @@ echo "-----------------------------------------------------"
 echo "FINISHED DJANGO ENTRYPOINT --------------------------"
 echo "-----------------------------------------------------"
 
+echo "Iniciando Django-Q..."
+python manage.py qcluster &
+
 # Run the CMD 
 echo "got command $cmd"
 exec $cmd
