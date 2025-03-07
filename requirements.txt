@@ -108,7 +108,7 @@ geonode-django-dynamic-model==0.4.0
 # custom
 django-q==1.3.9
 geojson==3.2.0
-geopandas==0.14.3
+geopandas==1.0.1
 chardet==5.2.0
 
 
