@@ -7,7 +7,7 @@ def schedule_update():
         func="geonode.geonode_updater.tasks.upload_to_geonode",
         defaults={
             "schedule_type": Schedule.MINUTES,  # ✅ Ejecutar cada X minutos
-            "minutes": 2,  # ✅ Intervalo de 2 minutos
+            "minutes": 5,  # ✅ Intervalo de 5 minutos
             "next_run": now()
         },
     )

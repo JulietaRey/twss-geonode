@@ -1,10 +1,10 @@
 from django.apps import AppConfig
+from django.db.models.signals import post_migrate
 
 class GeoNodeUpdaterConfig(AppConfig):
+    name = 'geonode.geonode_updater'
     default_auto_field = "django.db.models.BigAutoField"
-    name = "geonode.geonode_updater"
 
     def ready(self):
-        """Se ejecuta al iniciar Django"""
-        from geonode.geonode_updater.views import schedule_update
-        schedule_update()  # ✅ Programa la tarea automáticamente al iniciar
+        from .signals import schedule_task_post_migrate
+        post_migrate.connect(schedule_task_post_migrate, sender=self)

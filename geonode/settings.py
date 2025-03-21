@@ -2329,7 +2329,7 @@ DEFAULT_ASSET_HANDLER = "geonode.assets.local.LocalAssetHandler"
 ASSET_HANDLERS = [
     DEFAULT_ASSET_HANDLER,
 ]
-INSTALLED_APPS += ("geonode.assets",  "geonode.geonode_updater",)
+INSTALLED_APPS += ("geonode.assets",  "geonode.geonode_updater.apps.GeoNodeUpdaterConfig",)
 GEONODE_APPS += ("geonode.assets", )
 
 Q_CLUSTER = {
